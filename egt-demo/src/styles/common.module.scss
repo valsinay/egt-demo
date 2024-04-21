@@ -1,0 +1,30 @@
+.ant-empty,
+.ant-spin {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.ant-empty {
+    flex-direction: column;
+}
+
+.main-wrapper {
+    padding: 1rem 2rem;
+}
+
+
+.ant-menu {
+    display: flex;
+    border-bottom: 1px solid #f2f2f2;
+    padding: 0.5rem 1rem;
+
+    .ant-menu-item {
+        display: flex;
+        justify-content: center;
+        width: 8rem;
+    }
+}
+

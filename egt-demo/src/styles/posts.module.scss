@@ -1,0 +1,45 @@
+.user-posts-wrapper {
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    flex-direction: column;
+    flex: 1;
+    padding: 1rem 2rem;
+
+
+
+    .posts-wrapper {
+        display: grid;
+        grid-template-columns: 2fr 2fr;
+        grid-gap: 1rem;
+        width: 100%;
+
+        .posts-wrapper h2 {
+            text-align: center;
+        }
+
+    }
+}
+
+
+.post {
+    border: 1px solid #d9d9d9;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+
+    label {
+        font-weight: bolder;
+    }
+
+    .submit-btn {
+        margin-right: 0.5rem;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .user-posts-wrapper .posts-wrapper {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+}
