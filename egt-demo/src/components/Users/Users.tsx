@@ -5,7 +5,6 @@ import { useAppSelector } from "../../store/store";
 import { User } from "../../interfaces/index";
 import { UserItem } from "./UserItem";
 import { Loader, EmptyState } from "../../shared";
-import styled from "../../styles/common.module.scss";
 
 export const Users = () => {
   const users = useAppSelector((state) => state.user.users);
@@ -23,7 +22,7 @@ export const Users = () => {
   if (!users.length) return <EmptyState />;
 
   return (
-    <div className={styled["main-wrapper"]}>
+    <>
       <Collapse>
         {users.map((user: User) => (
           <Collapse.Panel header={user.name} key={user.id}>
@@ -31,6 +30,6 @@ export const Users = () => {
           </Collapse.Panel>
         ))}
       </Collapse>
-    </div>
+    </>
   );
 };

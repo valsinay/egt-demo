@@ -1,6 +1,6 @@
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { User, Post, EditPostProps } from "../../interfaces/index";
+import { Post, EditPostProps } from "../../interfaces/index";
 import { notify } from "../../utils/toast";
 
 interface PostState {
@@ -8,7 +8,6 @@ interface PostState {
   status: string;
   error: string | null;
 }
-
 
 const initialState: PostState = {
   posts: [],
@@ -39,16 +38,19 @@ export const deletePost = createAsyncThunk(
 );
 
 export const editPost = createAsyncThunk(
-  "post/editPost", 
-  async ({id, data}:EditPostProps) => {
-  try {
-      await axios.put(`${process.env.REACT_APP_API_URL}/posts/${id}`, {data});
-      notify("success", `Post "${data.title}" has been successfully updated using the API`);
-
-  } catch (error: any) {
-      notify("error", `Something went wrong. Error: ${error.message}`)
+  "post/editPost",
+  async ({ id, data }: EditPostProps) => {
+    try {
+      await axios.put(`${process.env.REACT_APP_API_URL}/posts/${id}`, { data });
+      notify(
+        "success",
+        `Post "${data.title}" has been successfully updated using the API`
+      );
+    } catch (error: any) {
+      notify("error", `Something went wrong. Error: ${error.message}`);
+    }
   }
-})
+);
 
 export const postsSlice = createSlice({
   name: "post",
@@ -82,5 +84,4 @@ export const postsSlice = createSlice({
   },
 });
 
-export const {  } = postsSlice.actions;
 export default postsSlice.reducer;

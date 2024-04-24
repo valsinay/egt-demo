@@ -1,0 +1,56 @@
+.wrapper {
+    display: flex;
+    gap: 0.625rem;
+    margin-bottom: 2rem;
+    max-width: 50rem;
+
+    input,
+    select {
+        width: 100%;
+        font-size: 1rem;
+        border: 0.0625rem solid #ccc;
+        border-radius: 0.3125rem;
+        padding: 0.3125rem 0.75rem;
+        transition: border-color 0.3s, box-shadow 0.3s;
+        outline: none;
+    }
+
+    input:focus,
+    select:focus {
+        border-color: #007BFF;
+        box-shadow: 0 0 0.3125rem rgba(0, 123, 255, 0.5);
+    }
+
+    select {
+        appearance: none;
+        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
+        background-color: #fff;
+        background-repeat: no-repeat;
+        background-position: right 0.75rem center;
+        background-size: 1rem;
+        padding-right: 1.875rem;
+    }
+
+    input::placeholder {
+        color: #bbb;
+    }
+
+    .clearBtn {
+        font-size: 1rem;
+        border-radius: 0.3125rem;
+        padding: 0.625rem 1.25rem;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s, transform 0.3s;
+        outline: none;
+        white-space: nowrap;
+        font-weight: bold;
+        background: #1677ff;
+
+        color: white;
+
+        &:disabled {
+            background-color: rgba(0, 123, 255, 0.5);
+        }
+    }
+}

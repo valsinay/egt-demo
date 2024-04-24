@@ -2,11 +2,10 @@ import React, { useEffect } from "react";
 import { ToastContainer } from "react-toastify";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
-import { Users } from "./components/Users/Users";
+import { Users, Tasks, UserPosts, NavBar, NotFound } from "./components";
 import { fetchUsers } from "./features/user/usersSlice";
 import { useAppDispatch } from "./store/store";
-import { NavBar } from "./components/NavBar";
-import { UserPosts } from "./components/Posts/UserPosts";
+import styles from './styles/common.module.scss'
 
 export const App = () => {
   const dispatch = useAppDispatch();
@@ -17,12 +16,16 @@ export const App = () => {
 
   return (
     <>
-      <BrowserRouter>
+    <BrowserRouter>
         <NavBar />
+    <div className={styles.main_container}>
         <Routes>
           <Route path={"/"} element={<Users />} />
           <Route path={"/posts/:userId"} element={<UserPosts />} />
+          <Route path={"/tasks"} element={<Tasks />} />
+          <Route path={"*"} element={<NotFound />} />
         </Routes>
+    </div>
       </BrowserRouter>
       <ToastContainer />
     </>

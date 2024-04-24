@@ -26,7 +26,7 @@ export const TasksSlice = createSlice({
     name: "task",
     initialState,
     reducers: {
-        toggleTaskCompletion: (state: TaskState, action: PayloadAction<Task>) => {
+        toggleStatusChange: (state: TaskState, action: PayloadAction<Task>) => {
             const task = state.tasks.find((t: Task) => t.id === action.payload.id);
             if (task) {
                 task.completed = !task.completed;
@@ -35,20 +35,20 @@ export const TasksSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
-            .addCase(fetchTasks.pending, (state: any, action) => {
+            .addCase(fetchTasks.pending, (state: TaskState, action) => {
                 state.status = "pending";
             })
-            .addCase(fetchTasks.fulfilled, (state: any, action) => {
+            .addCase(fetchTasks.fulfilled, (state: TaskState, action) => {
                 state.status = "success";
                 state.tasks = action.payload;
                 state.error = null;
             })
-            .addCase(fetchTasks.rejected, (state: any, action) => {
+            .addCase(fetchTasks.rejected, (state: TaskState, action) => {
                 state.status = "failed";
                 state.error = "Failed to fetch tasks"
             });
     },
 });
 
-export const {toggleTaskCompletion} = TasksSlice.actions;
+export const {toggleStatusChange} = TasksSlice.actions;
 export default TasksSlice.reducer;

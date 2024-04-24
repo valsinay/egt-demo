@@ -7,9 +7,31 @@ import { EmptyState, Loader } from "../../shared";
 import { User, Post } from "../../interfaces/index";
 import { fetchPosts } from "../../features/posts/postsSlice";
 import { UserPost } from "./UserPost";
-import styled from "../../styles/posts.module.scss";
+import styles from "../../styles/posts.module.scss";
 
 const { Title } = Typography;
+interface PostsProps {
+  posts: Post[];
+  postsStatus: string;
+  currentUser: User | undefined;
+}
+
+const Posts = ({ posts, postsStatus, currentUser }: PostsProps) => {
+  if (postsStatus === "pending") return <Loader />;
+  if (!posts.length)
+    return <EmptyState description="No user posts available" />;
+
+  return (
+    <>
+      <Title level={2}>{`${currentUser?.name}'s Posts`}</Title>
+      <div className={styles["posts-wrapper"]}>
+        {posts.map((post: Post) => (
+          <UserPost post={post} key={post.id} />
+        ))}
+      </div>
+    </>
+  );
+};
 
 export const UserPosts = () => {
   const { userId } = useParams();
@@ -26,31 +48,19 @@ export const UserPosts = () => {
     }
   }, [dispatch, userId]);
 
-  if(usersStatus === "pending") return <Loader />;
-  
-  const Posts = () => {
-    if (postsStatus === "pending") return <Loader />;
-    if (!posts.length) return <EmptyState description="No user posts available" />;
-
-    return (
-      <>  
-        <Title level={2}>{`${currentUser?.name}'s Posts`}</Title>
-        <div  className={styled["posts-wrapper"]}>
-          {posts.map((post: Post) => (
-            <UserPost post={post} key={post.id} />
-          ))}
-        </div>
-      </>
-    );
-  };
+  if (usersStatus === "pending") return <Loader />;
 
   return (
-    <div className={styled["user-posts-wrapper"]}>
-      <Title level={2}>{`User Details`}</Title>
+    <div className={styles["user-posts-wrapper"]}>
+      <Title className={styles.heading} level={2}>{`User Details`}</Title>
       {currentUser && (
         <>
           <UserItem user={currentUser} isUserPostsLayout />
-          <Posts />
+          <Posts
+            posts={posts}
+            postsStatus={postsStatus}
+            currentUser={currentUser}
+          />
         </>
       )}
     </div>

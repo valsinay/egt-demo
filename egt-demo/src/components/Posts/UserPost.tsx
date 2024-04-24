@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Button, Form, Input, Modal, Typography } from "antd";
-
 import { Post, PostItemValues } from "../../interfaces/index";
-import styled from "../../styles/posts.module.scss";
+import styles from "../../styles/posts.module.scss";
 import {
   deletePost,
   editPost,
@@ -84,7 +83,7 @@ export const UserPost = ({ post }: UserPostProps) => {
         <Paragraph>Are you sure you want to delete this post?</Paragraph>
       </Modal>
 
-      <div className={styled["post"]}>
+      <div className={styles["post"]}>
         <Form
           layout="vertical"
           form={form}
@@ -111,7 +110,7 @@ export const UserPost = ({ post }: UserPostProps) => {
             type="primary"
             htmlType="submit"
             disabled={!disableSaveChanges || !isFormDataChanged}
-            className={styled["submit-btn"]}
+            className={styles["submit-btn"]}
           >
             Save Changes
           </Button>

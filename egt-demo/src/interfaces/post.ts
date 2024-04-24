@@ -14,3 +14,4 @@ export interface EditPostProps {
   id: string;
   data: PostItemValues
 }
+
